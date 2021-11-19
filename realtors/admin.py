@@ -1,3 +1,4 @@
 from django.contrib import admin
+from listings.models import Realtor
 
-# Register your models here.
+admin.site.register(Realtor)
