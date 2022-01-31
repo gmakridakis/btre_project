@@ -1,8 +1,8 @@
  {% if messages %}
-    {% for message in messags %}
+    {% for message in messages %}
     <div id="message" class="container">
-        <div class="alert alert-{{ message.tags }} text-center"></div>
-        <button type="button" class="close">
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
             <strong>
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
@@ -13,6 +13,7 @@
             </strong>
             {{ message }}
         </button>
+        </div>
     </div>
     {% endfor %}
  {% endif %}
