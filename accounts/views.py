@@ -1,3 +1,4 @@
+from email import message
 from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
@@ -48,7 +49,10 @@ def login(request):
         return render(request, "accounts/login.html")
 
 def logout(request):
-    return redirect("index")
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request, "You are now logged out")
+        return redirect("login")
 
 def dashboard(request):
     return render(request, "accounts/dashboard.html")
