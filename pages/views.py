@@ -6,7 +6,10 @@ from listings.models import Listing
 def index(request):
     listings = Listing.objects.all().order_by("-list_date").filter(is_published=True)
 
-    return render(request, "pages/index.html", listings)
+    #if listings:
+    #    return render(request, "pages/index.html", listings)
+    #else:
+    return render(request, "pages/index.html")
 
 def about(request):
     return render(request, "pages/about.html")
