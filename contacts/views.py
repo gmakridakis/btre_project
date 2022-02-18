@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from btre.settings import EMAIL_HOST_USER
 from contacts.models import Contact
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -20,7 +22,6 @@ def contact(request):
         if request.user.is_authenticated:
             user_id=request.POST["user_id"] #request.user_id
 
-            import pdb; pdb.set_trace()
             if Contact.objects.all().filter(user_id=user_id, listing_id=listing_id).exists():
                 print("You have already made an inquiry for this listing")
                 messages.error(request, "You have already made an inquiry for this listing")
@@ -37,6 +38,13 @@ def contact(request):
         )
 
         contact.save()
+
+        send_mail(
+            subject="Property listing inquiry",
+            message="Your request has been sumbitted!",
+            from_email=EMAIL_HOST_USER,
+            recipient_list=[email]
+        )
 
         print("Your request has been sumbitted!")
         messages.success(request, "Your request has been sumbitted!")
