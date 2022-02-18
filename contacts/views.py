@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from btre.settings import EMAIL_HOST_USER
+from btre.settings import EMAIL_HOST_USER, ENABLE_EMAILS
 from contacts.models import Contact
 from django.core.mail import send_mail
 
@@ -39,12 +39,13 @@ def contact(request):
 
         contact.save()
 
-        send_mail(
-            subject="Property listing inquiry",
-            message="Your request has been sumbitted!",
-            from_email=EMAIL_HOST_USER,
-            recipient_list=[email]
-        )
+        if ENABLE_EMAILS:
+            send_mail(
+                subject="Property listing inquiry",
+                message="Your request has been sumbitted!",
+                from_email=EMAIL_HOST_USER,
+                recipient_list=[email]
+            )
 
         print("Your request has been sumbitted!")
         messages.success(request, "Your request has been sumbitted!")

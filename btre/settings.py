@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from pickle import FALSE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -155,3 +156,5 @@ EMAIL_PORT=587
 EMAIL_HOST_USER="makridak@gmail.com"
 EMAIL_HOST_PASSWORD="" # Fill this
 EMAIL_USE_TLS=True
+
+ENABLE_EMAILS=False
