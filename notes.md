@@ -60,6 +60,14 @@
 - Authentication: use `auth.authenticate` and `auth.login` functions 
 
 
+### DEPLOYMENT:
+- Get a remote environment (e.g. from DigitalOcean)
+- Set it up (user, ssh keys, postgres, git, clone code)
+- Set secrets to local_settings.py
+- migrate, collectstatic: as we do in a docker-compose
+- configure gunicorn and nginx
+
+Instructions: https://gist.github.com/bradtraversy/cfa565b879ff1458dba08f423cb01d71
 
 ### DB Administer
 `sudo -i -u postgres`
